@@ -106,6 +106,10 @@ Utilizase dous servidores para proporcionar unha mayor fiabilidad, rendimiento e
 
 5. A qué servidor DNS estás consultando? Cómo o podes cambiar sen tocar os ficheiros de configuración do sistema?
 
+nslookup podemos ver que a ip que do DNS que utiliza e 127.0.0.53
+
+Con **nslookup** server 127.0.0.55 cambiamos a configuracion do sistema
+
 6. Obtén o rexistro SOA (Start of Authority) do dominio  moodle.danielcastelao.org preguntándolle ó servidor DNS de google e logo preoguntándollo directamente ó servidor primario do dominio danielcastelao.org. 
 
 7. Consulta a IP de www.elpais.com. Cánto tempo queda almaceado o rexistro de recurso no DNS local?, se preguntas ó DNS local por este recurso, qué observas no TTL do rexistro?
