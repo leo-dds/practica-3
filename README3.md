@@ -82,7 +82,27 @@ As diferenzas son:
 
 3.  Averigua o nome e IP dos servidores de DNS autoritativos de www.danielcastelao.org, por qué soen ser 2 servidores autoritativos?
 
+**dig NS danielcastelao.org**
+ns1.hover.com.	216.40.47.26
+ns2.hover.com.	64.98.148.13
+
+Utilizase dous servidores para proporcionar unha mayor fiabilidad, rendimiento e flexibilidad. Distribulle la carga de taballo e garantiza a continuacion do servicio. 
+
 4. Realiza as consultas de nomes inversas: 130.206.164.68 e de outras dúas IPs que se che ocorran.
+
+**dig -x 130.206.164.68**
+
+;; ANSWER SECTION:
+68.164.206.130.in-addr.arpa. 4795 IN	PTR	pluto.tlm.unavarra.es.
+68.164.206.130.in-addr.arpa. 4795 IN	PTR	s164m68.unavarra.es.
+
+**dig -x 8.8.8.8**
+;; ANSWER SECTION:
+8.8.8.8.in-addr.arpa.	4700	IN	PTR	dns.google.
+
+**dig -x 52.206.14.32**
+;; ANSWER SECTION:
+32.14.206.52.in-addr.arpa. 300	IN	PTR	ec2-52-206-14-32.compute-1.amazonaws.com.
 
 5. A qué servidor DNS estás consultando? Cómo o podes cambiar sen tocar os ficheiros de configuración do sistema?
 
