@@ -191,9 +191,49 @@ _La respuesta confirma que el servidor raíz no acepta el modo recursivo (resolv
 
 12. Se queremos ver tóda-las queries que fai o servidor de DNS, qué opción temos que usar? averigua a IP de www.timesonline.co.uk, especifica os pasos dados
 **sudo tcpdump -i any port 53** con este comando capturra todo el tefico del DNS.
+dig www.timesonline.co.uk
+;; ANSWER SECTION:
+www.timesonline.co.uk.	300	IN	CNAME	alsop-n.uk.
+alsop-n.uk.		60	IN	A	34.240.28.43
+alsop-n.uk.		60	IN	A	54.76.240.177
+alsop-n.uk.		60	IN	A	52.208.17.106
 
 
 
-14. Usando a información dispoñible a traveso do DNS especifica a máquina (nome e IP) ou máquinas que actúan como servers de correo do dominio danielcastelao.org
 
-15. Podes obter os rexistros AAAA de www.facebook.com? a qué corresponden?
+13. Usando a información dispoñible a traveso do DNS especifica a máquina (nome e IP) ou máquinas que actúan como servers de correo do dominio danielcastelao.org
+ **dig danielcastelao.org MX**
+;; ANSWER SECTION:
+danielcastelao.org.	900	IN	MX	80 aspmx.l.google.com.
+danielcastelao.org.	900	IN	MX	90 alt1.aspmx.l.google.com.
+danielcastelao.org.	900	IN	MX	110 aspmx2.googlemail.com.
+danielcastelao.org.	900	IN	MX	120 aspmx3.googlemail.com.
+danielcastelao.org.	900	IN	MX	100 alt2.aspmx.l.google.com.
+danielcastelao.org.	900	IN	MX	130 aspmx4.googlemail.com.
+danielcastelao.org.	900	IN	MX	140 aspmx5.googlemail.com.
+
+
+14. Podes obter os rexistros AAAA de www.facebook.com? a qué corresponden?
+**dig www.facebook.com AAAA**
+;; communications error to 127.0.0.53#53: timed out
+
+; <<>> DiG 9.18.28-0ubuntu0.22.04.1-Ubuntu <<>> www.facebook.com AAAA
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 47916
+;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 65494
+;; QUESTION SECTION:
+;www.facebook.com.		IN	AAAA
+
+;; ANSWER SECTION:
+www.facebook.com.	19	IN	CNAME	star-mini.c10r.facebook.com.
+star-mini.c10r.facebook.com. 50	IN	AAAA	2a03:2880:f104:83:face:b00c:0:25de
+
+;; Query time: 22 msec
+;; SERVER: 127.0.0.53#53(127.0.0.53) (UDP)
+;; WHEN: Tue Oct 15 20:54:46 CEST 2024
+;; MSG SIZE  rcvd: 102
+
