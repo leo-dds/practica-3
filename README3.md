@@ -111,18 +111,23 @@ nslookup podemos ver que a ip que do DNS que utiliza e 127.0.0.53
 Con **nslookup** server 127.0.0.55 cambiamos a configuracion do sistema
 
 6. Obtén o rexistro SOA (Start of Authority) do dominio  moodle.danielcastelao.org preguntándolle ó servidor DNS de google e logo preoguntándollo directamente ó servidor primario do dominio danielcastelao.org. 
+Le preguntamos al DNS de google con **dig @8.8.8.8 moodle.danielcastelao.org SOA** que nos muestra que ns1.hov.com es el servidor primario.
+;; AUTHORITY SECTION:
+danielcastelao.org.	300	IN	SOA	ns1.hover.com. dnsmaster.hover.com. 1720467415 1800 900 604800 300
+
+Preguntamoslle o servidor primario directamente con **dig @ns1.hover.com moodle.danielcastelao.org SOA**
 
 7. Consulta a IP de www.elpais.com. Cánto tempo queda almaceado o rexistro de recurso no DNS local?, se preguntas ó DNS local por este recurso, qué observas no TTL do rexistro?
-   
+
  8. Busca o TTL de distintos nomes de dominio de servicios que escollas, a qué se poden deber as diferencias?
 
  9. Determina o TTL máximo (original) dun nome de dominio.
 
 10. Averigua cántas máquinas con distintas IPs están detrás do dominio web www.google.es, sempre son as mesmas e na mesma orde? por qué?
 
-11. Pregunta o mesmo a un server raiz (J.ROOTSERVERS.NET por exemplo) e comproba na resposta se o server acepta o modo recursivo
+13. Pregunta o mesmo a un server raiz (J.ROOTSERVERS.NET por exemplo) e comproba na resposta se o server acepta o modo recursivo
 
-12. Se queremos ver tóda-las queries que fai o servidor de DNS, qué opción temos que usar? averigua a IP de www.timesonline.co.uk, especifica os pasos dados
+14. Se queremos ver tóda-las queries que fai o servidor de DNS, qué opción temos que usar? averigua a IP de www.timesonline.co.uk, especifica os pasos dados
 
 13. Usando a información dispoñible a traveso do DNS especifica a máquina (nome e IP) ou máquinas que actúan como servers de correo do dominio danielcastelao.org
 
