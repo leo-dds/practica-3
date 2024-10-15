@@ -1,3 +1,4 @@
+https://github.com/leo-dds/practica-3.git
 
 1. Realiza unha consulta "dig danielcastelao.org" e identific cada parte da resposta (IN, CNAME, A, QUERY SECTION, ANSWER SECTION, AUTHORITY SECTION, etc)
 ig danielcastelao.org
