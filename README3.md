@@ -119,6 +119,17 @@ Preguntamoslle o servidor primario directamente con **dig @ns1.hover.com moodle.
 
 7. Consulta a IP de www.elpais.com. Cánto tempo queda almaceado o rexistro de recurso no DNS local?, se preguntas ó DNS local por este recurso, qué observas no TTL do rexistro?
 
+ Consultamolo con **dig www.elpais.com** nos la informacion que o tempo que queda almacenado e de 38s
+ ;; ANSWER SECTION:
+www.elpais.com.		66	IN	CNAME	prisa-us-eu.map.fastly.net.
+prisa-us-eu.map.fastly.net. 38	IN	A	151.101.134.133
+
+Si se lle consulta o DNS local con ** dig @127.0.0.53 www.elpais.com** o resultado e que tarda 33s
+;; ANSWER SECTION:
+www.elpais.com.		292	IN	CNAME	prisa-us-eu.map.fastly.net.
+prisa-us-eu.map.fastly.net. 33	IN	A	151.101.134.133
+                           
+
  8. Busca o TTL de distintos nomes de dominio de servicios que escollas, a qué se poden deber as diferencias?
 **dig www.marca.com**
 ;; ANSWER SECTION:
