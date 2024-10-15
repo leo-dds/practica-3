@@ -120,15 +120,80 @@ Preguntamoslle o servidor primario directamente con **dig @ns1.hover.com moodle.
 7. Consulta a IP de www.elpais.com. Cánto tempo queda almaceado o rexistro de recurso no DNS local?, se preguntas ó DNS local por este recurso, qué observas no TTL do rexistro?
 
  8. Busca o TTL de distintos nomes de dominio de servicios que escollas, a qué se poden deber as diferencias?
+**dig www.marca.com**
+;; ANSWER SECTION:
+www.marca.com.		135	IN	CNAME	unidadeditorial.map.fastly.net.
+unidadeditorial.map.fastly.net.	38 IN	A	199.232.197.50
+unidadeditorial.map.fastly.net.	38 IN	A	199.232.193.50
+_El ttl neste caso e de 38s_
 
- 9. Determina o TTL máximo (original) dun nome de dominio.
+**dig www.amazon.com**
+;; ANSWER SECTION:
+www.amazon.com.		293	IN	CNAME	tp.47cf2c8c9-frontier.amazon.com.
+tp.47cf2c8c9-frontier.amazon.com. 60 IN	CNAME	www.amazon.com.edgekey.net.
+www.amazon.com.edgekey.net. 19163 IN	CNAME	e15316.dsca.akamaiedge.net.
+e15316.dsca.akamaiedge.net. 20	IN	A	2.22.222.61
+
+_www.amazon.com. (293 seconds)_: El registro CNAME para www.amazon.com tiene un TTL de 293 segundos (casi 5 minutos). Esto significa que tu servidor DNS local puede almacenar la información de que www.amazon.com apunta a tp.47cf2c8c9-frontier.amazon.com durante ese tiempo antes de volver a consultar con los servidores DNS autoritativos.
+
+
+_tp.47cf2c8c9-frontier.amazon.com. (60 seconds)_: El registro CNAME para tp.47cf2c8c9-frontier.amazon.com tiene un TTL de 60 segundos (1 minuto).
+
+_www.amazon.com.edgekey.net. (19163 seconds)_: El registro CNAME para www.amazon.com.edgekey.net tiene un TTL alto, 19163 segundos (poco más de 5 horas y media).
+
+_e15316.dsca.akamaiedge.net. (20 seconds)_: El registro A final para e15316.dsca.akamaiedge.net tiene un TTL bajo, solo 20 segundos. Esto indica que la dirección IP asociada a este dominio puede cambiar con frecuencia, por lo que se actualiza con mayor frecuencia.
+
+9. Determina o TTL máximo (original) dun nome de dominio.
 
 10. Averigua cántas máquinas con distintas IPs están detrás do dominio web www.google.es, sempre son as mesmas e na mesma orde? por qué?
+Hice dos consultas con **dig www.google.es** e saironme duas maquinas distintas, unha coa IP 142.250.184.163 e a utra con 142.250.200.99
 
-13. Pregunta o mesmo a un server raiz (J.ROOTSERVERS.NET por exemplo) e comproba na resposta se o server acepta o modo recursivo
+11. Pregunta o mesmo a un server raiz (J.ROOTSERVERS.NET por exemplo) e comproba na resposta se o server acepta o modo recursivo
+**dig @J.ROOT-SERVERS.NET www.google.es**
 
-14. Se queremos ver tóda-las queries que fai o servidor de DNS, qué opción temos que usar? averigua a IP de www.timesonline.co.uk, especifica os pasos dados
+; <<>> DiG 9.18.28-0ubuntu0.22.04.1-Ubuntu <<>> @J.ROOT-SERVERS.NET www.google.es
+; (2 servers found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 27841
+;; flags: qr rd; QUERY: 1, ANSWER: 0, AUTHORITY: 4, ADDITIONAL: 9
+;; WARNING: recursion requested but not available
 
-13. Usando a información dispoñible a traveso do DNS especifica a máquina (nome e IP) ou máquinas que actúan como servers de correo do dominio danielcastelao.org
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1472
+;; QUESTION SECTION:
+;www.google.es.			IN	A
 
-14. Podes obter os rexistros AAAA de www.facebook.com? a qué corresponden?
+;; AUTHORITY SECTION:
+es.			172800	IN	NS	a.nic.es.
+es.			172800	IN	NS	c.nic.es.
+es.			172800	IN	NS	g.nic.es.
+es.			172800	IN	NS	h.nic.es.
+
+;; ADDITIONAL SECTION:
+a.nic.es.		172800	IN	A	194.69.254.1
+c.nic.es.		172800	IN	A	194.0.34.53
+g.nic.es.		172800	IN	A	204.61.217.1
+h.nic.es.		172800	IN	A	194.0.33.53
+a.nic.es.		172800	IN	AAAA	2001:67c:21cc:2000::64:41
+c.nic.es.		172800	IN	AAAA	2001:678:44::53
+g.nic.es.		172800	IN	AAAA	2001:500:14:7001:ad::1
+h.nic.es.		172800	IN	AAAA	2001:678:40::53
+
+;; Query time: 48 msec
+;; SERVER: 192.58.128.30#53(J.ROOT-SERVERS.NET) (UDP)
+;; WHEN: Tue Oct 15 17:28:54 CEST 2024
+;; MSG SIZE  rcvd: 286
+
+La respuesta te brinda las direcciones IP de los servidores DNS autoritativos para el dominio ".es" (España).
+No te da la IP final para www.google.es porque ese trabajo lo realizan los servidores DNS autoritativos de ".es".
+_La respuesta confirma que el servidor raíz no acepta el modo recursivo (resolver la consulta por completo)._
+
+12. Se queremos ver tóda-las queries que fai o servidor de DNS, qué opción temos que usar? averigua a IP de www.timesonline.co.uk, especifica os pasos dados
+**sudo tcpdump -i any port 53** con este comando capturra todo el tefico del DNS.
+
+
+
+14. Usando a información dispoñible a traveso do DNS especifica a máquina (nome e IP) ou máquinas que actúan como servers de correo do dominio danielcastelao.org
+
+15. Podes obter os rexistros AAAA de www.facebook.com? a qué corresponden?
